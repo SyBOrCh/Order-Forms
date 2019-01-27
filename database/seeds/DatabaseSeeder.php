@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
             'White'
         ];
 
+        $gasses = [
+            'Argon 5.0',
+            'Argon 6.0',
+            'Koolzuur 4.6',
+        ];
+
         foreach ($actions as $action) {
             // Insert all liquid waste containers
             foreach ($containerColors as $color) {
@@ -32,6 +38,9 @@ class DatabaseSeeder extends Seeder
         }
 
         \App\Item::create(['type' => 'Liquid nitrogen tank', 'action' => 'deliver']);
-        \App\Item::create(['type' => 'Argon ', 'action' => 'deliver']);
+
+        foreach ($gasses as $gas) {
+            \App\Item::create(['type' => $gas, 'action' => 'deliver']);
+        }
     }
 }
