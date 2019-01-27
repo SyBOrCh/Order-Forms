@@ -23,4 +23,13 @@ class UserTest extends TestCase
         $user = factory(\App\User::class)->create(['budgetnumber' => '8057890']);
         $this->assertEquals('8057890', $user->budgetnumber);
     }
+
+    /** @test **/
+    public function a_user_can_fetch_its_current_order()
+    {
+        $user = factory(\App\User::class)->create();
+        $order = $user->newOrder();
+
+        $this->assertEquals($order->fresh(), $user->currentOrder());
+    }
 }

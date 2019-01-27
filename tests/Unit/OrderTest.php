@@ -23,4 +23,16 @@ class OrderTest extends TestCase
         $order = factory(\App\Order::class)->create(['open' => 1]);
         $this->assertEquals(1, $order->open);
     }
+
+    /** @test **/
+    public function orders_can_be_filtered_by_their_open_or_closed_status()
+    {
+        $order1 = factory(\App\Order::class)->create(['open' => false]);
+        $order2 = factory(\App\Order::class)->create(['open' => true]);
+
+        $orders = \App\Order::open()->get();
+
+        $this->assertFalse($orders->contains($order1));
+        $this->assertTrue($orders->contains($order2));
+    }
 }

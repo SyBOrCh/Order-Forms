@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->string('action');
             $table->string('type');
+            $table->string('category');
             $table->timestamps();
         });
     }

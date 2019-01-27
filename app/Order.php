@@ -23,6 +23,11 @@ class Order extends Model
         return $this->belongsToMany(Item::class)->withPivot('quantity');
     }
 
+    public function scopeOpen($query)
+    {
+        return $query->where('open', true);   
+    }
+
     public function close()
     {
         $this->open = false;

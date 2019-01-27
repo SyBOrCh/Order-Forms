@@ -13,4 +13,11 @@ class Item extends Model
     {
         return $this->belongsToMany(Order::class);
     }
+
+    public function scopeCategory($query, $category)
+    {
+        $category = str_replace('-', ' ', $category);
+
+        $query->where('category', $category);
+    }
 }

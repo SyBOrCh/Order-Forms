@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function newOrder()
     {
-        $openOrders = Order::where('user_id', $this->id)->where('open', true);
+        $openOrders = $this->orders()->open();
         
         if ($openOrders->count() > 0) {
             return $openOrders->first();
@@ -44,5 +44,10 @@ class User extends Authenticatable
 
         $order = Order::create(['user_id' => $this->id]);
         return $order;
+    }
+
+    public function currentOrder()
+    {
+        return $this->orders()->open()->first();
     }
 }
