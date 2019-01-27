@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'location', 'budgetnumber',
     ];
 
     /**
@@ -27,4 +28,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function newOrder()
+    {
+        $openOrders = Order::where('user_id', $this->id)->where('open', true);
+        
+        if ($openOrders->count() > 0) {
+            return $openOrders->first();
+        }
+
+        $order = Order::create(['user_id' => $this->id]);
+        return $order;
+    }
 }
