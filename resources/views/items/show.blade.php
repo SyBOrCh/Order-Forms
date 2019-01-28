@@ -16,7 +16,7 @@
                     <div class="input-group mb-3">
                       <input type="number" class="form-control form-control-lg" aria-label="Recipient's username" aria-describedby="basic-addon2" value="0">
                       <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">{{ str_plural($item->type) }}</span>
+                        <span class="input-group-text" id="basic-addon2">{{ $item->type }}</span>
                       </div>
                     </div>
                 </div>

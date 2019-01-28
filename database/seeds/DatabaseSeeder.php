@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-       \App\User::create([
+        // 
+
+        \App\User::create([
             'name'  => 'John',
             'email' => 'jbraunnl@gmail.com',
             'password'  => bcrypt('password'),
@@ -21,7 +23,8 @@ class DatabaseSeeder extends Seeder
             'location'  => '4W35',
        ]); 
 
-       $labs = ['4W35', '4W19'];
+        $labs = ['4W35', '4W19'];
+        $solventTypes = ['halogen rich', 'halogen poor'];
 
         $actions = ['collect', 'deliver'];
 
@@ -54,7 +57,12 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ($labs as $lab) {
-            \App\Item::create(['type' => 'Labbutler', 'category' => 'lab butler', 'action' => 'collect']);
+            foreach ($solventTypes as $solventType) {
+                \App\Item::create(['type' => 'Labbutler ' . $lab . ' ('. $solventType .')', 'category' => 'lab butler', 'action' => 'collect']);
+            }
         }
+
+        \App\Item::create(['type' => 'SZA container', 'category' => 'general waste', 'action' => 'deliver']);
+
     }
 }
