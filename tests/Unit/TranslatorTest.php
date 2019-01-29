@@ -13,7 +13,7 @@ class TranslatorTest extends TestCase
     public function it_can_translate_waste_containers_to_NL_equivalent()
     {
         $string = 'Blue waste container';
-        $dutchTranslation = 'Blauw (vloeibaar) afvalvat (10 L)';
+        $dutchTranslation = 'Blauw afvalvat (vloeibaar, 10 L)';
 
         $this->assertEquals($dutchTranslation, Translator::toNL($string));
     }

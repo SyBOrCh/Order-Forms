@@ -30,14 +30,12 @@ class OrderController extends Controller
 
     public function submit(Order $order)
     {
-        // Let's send an e-mail
-
         Mail::to('jbraunnl@gmail.com')
             ->send(
                 new NewOrder($order)
             );
 
-        // $order->close();
+        $order->close();
 
         return redirect(route('home'));
     }
