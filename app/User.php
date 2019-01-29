@@ -48,6 +48,10 @@ class User extends Authenticatable
 
     public function currentOrder()
     {
+        if ($this->orders()->open()->count() < 1) {
+            return Order::create(['user_id' => $this->id]);
+        }
+        
         return $this->orders()->open()->first();
     }
 }

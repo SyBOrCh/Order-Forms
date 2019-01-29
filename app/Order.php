@@ -18,6 +18,11 @@ class Order extends Model
         return $this->belongsTo(User::class);        
     }
 
+    public function path()
+    {
+        return '/orders/' . $this->id;
+    }
+
     public function items()
     {
         return $this->belongsToMany(Item::class)->withPivot('quantity');

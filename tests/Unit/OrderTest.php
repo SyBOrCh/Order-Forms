@@ -35,4 +35,12 @@ class OrderTest extends TestCase
         $this->assertFalse($orders->contains($order1));
         $this->assertTrue($orders->contains($order2));
     }
+
+    /** @test **/
+    public function an_order_can_make_its_path()
+    {
+        $order = factory(\App\Order::class)->create();
+
+        $this->assertEquals('/orders/' . $order->id, $order->path());
+    }
 }

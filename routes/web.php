@@ -18,3 +18,5 @@ Route::get('/', 'ItemController@index');
 Route::get('/categories/{category}', 'ItemController@show');
 
 Route::get('/orders', 'OrderController@index');
+
+Route::post('/orders/{order}/items', 'OrderItemController@store');

@@ -24,4 +24,25 @@ class ItemOrderTest extends TestCase
 
         $this->assertEquals(4, $order->items->first()->pivot->quantity);
     }
+
+    /** @test **/
+    public function items_can_be_added_to_an_order()
+    {
+        // $this->withoutExceptionHandling();
+
+        $order = factory(Order::class)->create();
+        $item = factory(Item::class)->create();
+        $quantity = 5;
+
+        $request = [
+            'quantity' =>
+            [$item->id => $quantity]
+        ];
+
+        $this->post($order->path() . '/items', $request);
+
+        $this->assertCount(1, $order->items);
+        $this->assertTrue($order->items->contains($item));
+        $this->assertEquals(5, $order->items->first()->pivot->quantity);
+    }
 }
