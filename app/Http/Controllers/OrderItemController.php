@@ -21,6 +21,34 @@ class OrderItemController extends Controller
             }
         }
 
+        return redirect(route('home'));
+    }
+
+    public function destroy(Order $order, Item $item)
+    {
+        $order->items()->detach($item);
+
         return redirect()->back();
     }
+
+    public function decrease(Order $order, Item $item)
+    {
+        $item = $order->items()->find($item->id);
+
+        $item->pivot->quantity -= 1;
+        $item->pivot->save();
+
+        return redirect()->back();
+    }
+
+    public function increase(Order $order, Item $item)
+    {
+        $item = $order->items()->find($item->id);
+
+        $item->pivot->quantity += 1;
+        $item->pivot->save();
+
+        return redirect()->back();
+    }
+
 }

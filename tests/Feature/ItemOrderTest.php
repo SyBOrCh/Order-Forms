@@ -45,4 +45,36 @@ class ItemOrderTest extends TestCase
         $this->assertTrue($order->items->contains($item));
         $this->assertEquals(5, $order->items->first()->pivot->quantity);
     }
+
+    /** @test **/
+    public function items_can_be_removed_from_an_order()
+    {
+        $order = factory(Order::class)->create();
+        $item = factory(Item::class)->create();
+        $order->items()->attach($item, ['quantity' => 4]);
+        
+        $this->assertTrue($order->items->contains($item));
+
+        $this->delete($order->path() . '/items/' . $item->id);
+
+        $this->assertFalse($order->fresh()->items->contains($item));
+    }
+
+    /** @test **/
+    public function item_quantities_can_be_modified_from_within_an_order()
+    {
+        $this->withoutExceptionHandling();
+
+        $order = factory(Order::class)->create();
+        $item = factory(Item::class)->create();
+        $order->items()->attach($item, ['quantity' => 4]);
+
+        $this->post($order->path() . '/items/' . $item->id . '/decrease');
+
+        $this->assertEquals(3, $order->fresh()->items()->first()->pivot->quantity);
+
+        $this->post($order->path() . '/items/' . $item->id . '/increase');
+        $this->assertEquals(4, $order->fresh()->items()->first()->pivot->quantity);
+    }
+
 }
