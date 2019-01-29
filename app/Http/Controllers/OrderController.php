@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Mail\NewOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -28,10 +30,14 @@ class OrderController extends Controller
 
     public function submit(Order $order)
     {
-        // Let's make an e-mail
-        
+        // Let's send an e-mail
 
-        $order->close();
+        Mail::to('jbraunnl@gmail.com')
+            ->send(
+                new NewOrder($order)
+            );
+
+        // $order->close();
 
         return redirect(route('home'));
     }

@@ -32,13 +32,16 @@ class DatabaseSeeder extends Seeder
             'Blue',
             'Green',
             'Red',
-            'White'
+            'White',
+            'Black',
         ];
 
         $gasses = [
             'Argon 5.0',
-            'Argon 6.0',
-            'Koolzuur 4.6',
+            'Helium 5.0',
+            'Hydrogen 5.0',
+            'Oxygen 5.0',
+            'CO2 (with riser)',
         ];
 
         foreach ($actions as $action) {
