@@ -3,8 +3,6 @@
 @section('content')
     <div class="container">
         
-        <!-- <h3 class="text-center mb-2">Categories</h3> -->
-        
         <div class="container mx-auto flex flex-wrap w-full justify-center">
         @foreach ($categories as $category => $items)
         <div class="w-1/4 mb-4 px-2 pt-2 mx-2">
@@ -15,7 +13,7 @@
              <div class="card-body text-center">
                 <a 
                   href="/categories/{{ str_slug($category) }}" 
-                  class="btn btn-primary {{ $currentOrder->contains(\App\Item::where('category', $category)->first()) ? 'disabled' : '' }}"
+                  class="btn {{ $currentOrder->contains(\App\Item::where('category', $category)->first()) ? 'disabled btn-secondary' : 'btn-primary' }}"
                 >{{ title_case($category) }}</a>
              </div>
            </div>

@@ -22,8 +22,8 @@
 
     <style>
         .grey-out {
-          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-          filter: grayscale(100%);
+          -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(70%);
         }
     </style>
 </head>

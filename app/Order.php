@@ -50,4 +50,9 @@ class Order extends Model
     {
         return ! $this->open;
     }
+
+    public function containsGeneralWaste()
+    {
+        return $this->items()->where('category', 'general waste')->count() > 0;
+    }
 }

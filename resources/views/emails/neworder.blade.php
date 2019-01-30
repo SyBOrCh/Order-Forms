@@ -13,7 +13,7 @@
             <br><br> Met vriendelijke groet, 
             <br><br>{{ auth()->user()->name }} 
             <br><br> Telefoon: {{ auth()->user()->phone }}
-            <br>(O|2 gebouw)
+            <br>(O|2 gebouw, {{ auth()->user()->location }})
             <br>Organisatie: VU algemeen, <br> Faculteit der Exacte Wetenschappen
             <br>Budgetnummer: {{ auth()->user()->budgetnumber }}
         </p>

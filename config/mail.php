@@ -60,6 +60,16 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'AMD'    => [
+        'address'   => env('MAIL_TO_AMD_ADDRESS', 'bestellinggasflessen.amd@vu.nl'),
+        'name'      => env('MAIL_TO_AMD_NAME', 'AMD Gasflessen'),
+    ],
+
+    'FCO'    => [
+        'address'   => env('MAIL_TO_FCO_ADDRESS', 'servicedesk.fco@vu.nl'),
+        'name'      => env('MAIL_TO_FCO_NAME', 'FCO'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
