@@ -15,11 +15,13 @@ class DatabaseSeeder extends Seeder
 
         \App\User::create([
             'name'  => 'John',
-            'email' => 'jbraunnl@gmail.com',
+            'email' => 'j.braun@vu.nl',
             'password'  => bcrypt('password'),
             'budgetnumber'  => '200000',
             'phone' => '020-1234567',
             'location'  => '4W35',
+            'vunetid'   => 'jbn478',
+            'vunetpassword'  => 'password',
        ]); 
 
         $labs = ['4W35', '4W19'];

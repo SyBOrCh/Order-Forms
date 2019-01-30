@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Mail\NewOrder;
-use App\Mail\SimpleMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 
 class OrderController extends Controller
 {
@@ -29,8 +30,18 @@ class OrderController extends Controller
         return view('orders.show', compact('order', 'items'));
     }
 
-    public function submit(Order $order)
+    public function submit(Order $order, Request $request)
     {
+        $request->validate([
+            'vunetid'   => 'required',
+            'vunetpassword' => 'required',
+        ]);
+        
+        $vunetID = $request->vunetid;
+        $vunetPassword = $request->vunetpassword;
+
+        $this->configureMailer($vunetID, $vunetPassword);
+
         if ($order->containsGeneralWaste()) {
             // Split the order in two parts:
             $amdOrder = Order::create(['user_id' => auth()->user()->id]);
@@ -82,5 +93,24 @@ class OrderController extends Controller
         $order->close();
 
         return redirect(route('orders'));
+    }
+
+    public function configureMailer($username, $password)
+    {
+        $conf = [
+            "driver" => config('mail.driver'),
+            "host" => config('mail.host'),
+            "port" => config('mail.port'),
+            "FCO" => config('mail.FCO'),
+            "AMD" => config('mail.AMD'),
+            "encryption" => config('mail.encryption'),
+            "username" => $username,
+            "password" => $password,
+        ];
+
+        Config::set('mail', $conf);
+
+        $app = App::getInstance();
+        $app->register('Illuminate\Mail\MailServiceProvider');
     }
 }

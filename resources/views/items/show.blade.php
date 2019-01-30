@@ -38,9 +38,9 @@
                           <div class="flex justify-around w-full">
                             <div class="w-1/3 mr-2">
                             <select name="location[{{ $item->id }}]" class="form-control">
-                              <option value="4W33">4W33</option>
-                              <option value="4W35">4W35</option>
-                              <option value="4E22">4E22</option>
+                              <option value="4W33 (fixatie compleet)">4W33</option>
+                              <option value="4W35 (fixatie compleet)">4W35</option>
+                              <option value="4E22 (fixatie compleet)">4E22</option>
                             </select>
                             </div>
                             <div class="w-2/3">
