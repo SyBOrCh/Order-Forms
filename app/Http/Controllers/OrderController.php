@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Mail\NewOrder;
+use App\Mail\SimpleMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -45,8 +46,8 @@ class OrderController extends Controller
                 ]);
             }
 
-            Mail::to(config('mail.AMD.address'), config('mail.AMD.name'))
-                ->queue(
+            Mail::to(config('mail.AMD'))
+                ->send(
                     new NewOrder($amdOrder)
                 );
 
@@ -60,8 +61,8 @@ class OrderController extends Controller
                 ]);
             }
 
-            Mail::to(config('mail.FCO.address'), config('mail.FCO.name'))
-                ->queue(
+            Mail::to(config('mail.FCO'))
+                ->send(
                     new NewOrder($fcoOrder)
                 );
 
@@ -70,16 +71,16 @@ class OrderController extends Controller
 
             $order->close();
 
-            return redirect($order->path());
+            return redirect(route('orders'));
         }
 
-        Mail::to(config('mail.AMD.address'), config('mail.AMD.name'))
-            ->queue(
+        Mail::to(config('mail.AMD'))
+            ->send(
                 new NewOrder($order)
             );
 
         $order->close();
 
-        return redirect(route('home'));
+        return redirect(route('orders'));
     }
 }

@@ -22,7 +22,7 @@ class NewOrder extends Mailable
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct(Order $order)
     {
         $this->order = $order;
         $this->translator = new Translator();
@@ -37,8 +37,7 @@ class NewOrder extends Mailable
     public function build()
     {
         return $this
-            ->from(auth()->user()->email, auth()->user()->name)    
-            ->bcc(auth()->user()->email, auth()->user()->name)    
+            ->from(auth()->user()->email) 
             ->subject('Nieuwe aanvraag')
             ->view('emails.neworder');
     }
