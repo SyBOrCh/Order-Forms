@@ -20,8 +20,6 @@ class DatabaseSeeder extends Seeder
             'budgetnumber'  => '200000',
             'phone' => '020-1234567',
             'location'  => '4W35',
-            'vunetid'   => 'jbn478',
-            'vunetpassword'  => 'password',
        ]); 
 
         $labs = ['4W35', '4W19'];
