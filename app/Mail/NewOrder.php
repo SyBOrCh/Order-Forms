@@ -16,6 +16,7 @@ class NewOrder extends Mailable
     public $order;
     public $items;
     public $translator;
+    public $user;
 
     /**
      * Create a new message instance.
@@ -25,8 +26,9 @@ class NewOrder extends Mailable
     public function __construct(Order $order)
     {
         $this->order = $order;
+        $this->user = auth()->user();
         $this->translator = new Translator();
-        $this->items = $order->items->groupBy('action');
+        $this->items = $this->order->items->groupBy('action');
     }
 
     /**
@@ -36,8 +38,9 @@ class NewOrder extends Mailable
      */
     public function build()
     {
-        return $this
-            ->from(auth()->user()->email) 
+        return $this 
+            ->from($this->user->email)
+            ->bcc($this->user->email)
             ->subject('Nieuwe aanvraag')
             ->view('emails.neworder');
     }

@@ -11,11 +11,12 @@
             <br><br> Graag zou ik onderstaande acties en/of artikelen aanvragen.
             <br><br> Bij voorbaat dank.
             <br><br> Met vriendelijke groet, 
-            <br><br>{{ auth()->user()->name }} 
+            <br><br>{{ auth()->user()->name }}
+            <br>{{ auth()->user()->mail }}
             <br><br> Telefoon: {{ auth()->user()->phone }}
-            <br>(O|2 gebouw, {{ auth()->user()->location }})
+            <br><br>(O|2 gebouw, {{ auth()->user()->location }})
             <br>Organisatie: VU algemeen, <br> Faculteit der Exacte Wetenschappen
-            <br>Budgetnummer: {{ auth()->user()->budgetnumber }}
+            <br><br>Budgetnummer: {{ auth()->user()->budgetnumber }}
         </p>
 
         <div class="row">
