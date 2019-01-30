@@ -19,6 +19,8 @@ class CreateItemOrderTable extends Migration
             $table->unsignedInteger('order_id');
 
             $table->unsignedInteger('quantity');
+            $table->string('notes')->nullable();
+            $table->string('location')->nullable();
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

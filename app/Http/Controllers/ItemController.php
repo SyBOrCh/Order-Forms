@@ -14,8 +14,9 @@ class ItemController extends Controller
     public function index()
     {
         $categories = \App\Item::all()->groupBy('category');
+        $currentOrder = auth()->user()->currentOrder()->items;
 
-        return view('home.categories', compact('categories'));
+        return view('home.categories', compact('categories', 'currentOrder'));
     }
 
     public function show($category)

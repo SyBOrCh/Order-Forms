@@ -19,6 +19,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+    <style>
+        .grey-out {
+          -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+          filter: grayscale(100%);
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -34,9 +41,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">View categories</a>
+                        </li>
+
                          <li class="nav-item">
                             <a class="nav-link" href="/orders/{{ auth()->user()->currentOrder()->id }}">Current order ({{ auth()->user()->currentOrder()->items()->count() }} items)</a>
                         </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

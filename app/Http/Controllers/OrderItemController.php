@@ -11,13 +11,29 @@ class OrderItemController extends Controller
     public function store(Order $order, Request $request)
     {
         $quantities = $request->quantity;
+        $notes = $request->notes;
+        $location = $request->location;
+
+        // rewrite to array map 
+        $itemArray = [];
 
         foreach ($quantities as $item_id => $quantity) {
-            if ($quantity > 0) {
-                $order->items()->attach(
-                    Item::find($item_id), 
-                    ['quantity' => $quantity]
-                );
+            $itemArray[$item_id] = [
+                'quantity' => $quantity, 
+                'notes' => $notes[$item_id],
+                'location'  => $location[$item_id],
+            ];
+        }
+
+        foreach ($itemArray as $item_id => $parameters) {
+            if ($parameters['quantity'] > 0) {
+                    $order->items()->attach(
+                        Item::find($item_id), [
+                            'quantity' => $parameters['quantity'], 
+                            'notes' => $parameters['notes'],
+                            'location'  => $parameters['location'],
+                        ]
+                    );
             }
         }
 

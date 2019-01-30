@@ -13,13 +13,12 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
-        // 
-
         \App\User::create([
             'name'  => 'John',
             'email' => 'jbraunnl@gmail.com',
             'password'  => bcrypt('password'),
             'budgetnumber'  => '200000',
+            'phone' => '020-1234567',
             'location'  => '4W35',
        ]); 
 
@@ -66,6 +65,9 @@ class DatabaseSeeder extends Seeder
         }
 
         \App\Item::create(['type' => 'SZA container', 'category' => 'general waste', 'action' => 'deliver']);
+        // \App\Item::create(['type' => 'Glasbak', 'category' => 'general waste', 'action' => 'deliver']);
+        // \App\Item::create(['type' => 'Papierbak', 'category' => 'general waste', 'action' => 'deliver']);
+        // \App\Item::create(['type' => 'Plastic', 'category' => 'general waste', 'action' => 'deliver']);
 
     }
 }

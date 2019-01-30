@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     public function index()
     {
-        $orders = Auth::user()->orders;
+        $orders = Auth::user()->closedOrders();
         return view('orders.index', compact('orders'));
     }
 

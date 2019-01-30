@@ -77,4 +77,24 @@ class ItemOrderTest extends TestCase
         $this->assertEquals(4, $order->fresh()->items()->first()->pivot->quantity);
     }
 
+    /** @test **/
+    public function an_item_wihtin_an_order_can_have_notes()
+    {
+        $order = factory(Order::class)->create();
+        $item = factory(Item::class)->create();
+        $order->items()->attach($item, ['quantity' => 1, 'notes' => 'Test note']);
+
+        $this->assertEquals('Test note', $order->fresh()->items()->first()->pivot->notes);        
+    }
+
+    /** @test **/
+    public function an_item_wihtin_an_order_can_have_a_location()
+    {
+        $order = factory(Order::class)->create();
+        $item = factory(Item::class)->create();
+        $order->items()->attach($item, ['quantity' => 1, 'location' => '4W40']);
+
+        $this->assertEquals('4W40', $order->fresh()->items()->first()->pivot->location);        
+    }
+
 }

@@ -76,6 +76,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" placeholder="020-1234567" required>
+
+                                @if ($errors->has('phone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="location" class="col-md-4 col-form-label text-md-right">{{ __('Location') }}</label>
 
                             <div class="col-md-6">

@@ -34,6 +34,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function closedOrders()
+    {
+        return $this->orders()->latest()->where('open', false)->get();
+    }
+
     public function newOrder()
     {
         $openOrders = $this->orders()->open();

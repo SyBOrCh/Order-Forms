@@ -25,7 +25,8 @@ class Order extends Model
 
     public function items()
     {
-        return $this->belongsToMany(Item::class)->withPivot('quantity');
+        return $this->belongsToMany(Item::class)
+            ->withPivot('quantity', 'notes', 'location');
     }
 
     public function scopeOpen($query)

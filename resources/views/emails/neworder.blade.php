@@ -12,6 +12,7 @@
             <br><br> Bij voorbaat dank.
             <br><br> Met vriendelijke groet, 
             <br><br>{{ auth()->user()->name }} 
+            <br><br> Telefoon: {{ auth()->user()->phone }}
             <br>(O|2 gebouw)
             <br>Organisatie: VU algemeen, <br> Faculteit der Exacte Wetenschappen
             <br>Budgetnummer: {{ auth()->user()->budgetnumber }}
@@ -23,7 +24,15 @@
                 <h3 class="mb-4 mt-4">{{ $translator::toNL(title_case($action)) }}</h3>
                 @foreach ($items as $item)
                 <ul>
-                    <li>{{ $item->pivot->quantity }}&times; {{ $translator::toNL($item->type) }}</li>
+                    <li>
+                        {{ $item->pivot->quantity }}&times; {{ $translator::toNL($item->type) }}
+                        @if ($item->pivot->notes)
+                            <br>NB: {{ $item->pivot->notes }}
+                        @endif
+                        @if ($item->pivot->location)
+                            <br>Afleverlocatie: {{ $item->pivot->location }}
+                        @endif
+                    </li>
                 </ul>
                 @endforeach
             </div>
@@ -32,9 +41,8 @@
         
         @if ($items->where('category', 'gasses')->count() > 0)
         <p>
-            <u>Met betrekking tot de gassen:</u><br>
             <em>
-                Alle gasflessen worden besteld bij leverancier <strong>Praxair</strong>. De afleverlocatie: <strong>4W-G</strong> kast(en), graag met complete fixatie. Zouden alle lege gasflessen ook meteen opgehaald kunnen worden? 
+                 Zouden alle lege gasflessen ook meteen opgehaald kunnen worden? 
             </em>
         </p>
         @endif

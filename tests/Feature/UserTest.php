@@ -25,6 +25,13 @@ class UserTest extends TestCase
     }
 
     /** @test **/
+    public function a_user_has_a_phone_number()
+    {
+        $user = factory(\App\User::class)->create(['phone' => '020-1234567']);
+        $this->assertEquals('020-1234567', $user->phone);
+    }
+
+    /** @test **/
     public function a_user_can_fetch_its_current_order()
     {
         $user = factory(\App\User::class)->create();
