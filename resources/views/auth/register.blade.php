@@ -76,6 +76,23 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="group" class="col-md-4 col-form-label text-md-right">{{ __('Group') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="group" name="group" class="form-control{{ $errors->has('group') ? ' is-invalid' : '' }}" required>
+                                  <option value="syborch">SyBOrCh</option>
+                                  <option value="medchem">MedChem</option>
+                                </select>
+
+                                @if ($errors->has('group'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('group') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
 
                             <div class="col-md-6">

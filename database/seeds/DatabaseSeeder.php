@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             'location'  => '4W35',
        ]); 
 
-        $labs = ['4W35', '4W19'];
         $solventTypes = ['halogen rich', 'halogen poor'];
 
         $actions = ['collect', 'deliver'];
@@ -58,10 +57,9 @@ class DatabaseSeeder extends Seeder
             \App\Item::create(['type' => $gas, 'category' => 'gasses', 'action' => 'deliver']);
         }
 
-        foreach ($labs as $lab) {
-            foreach ($solventTypes as $solventType) {
-                \App\Item::create(['type' => 'Labbutler ' . $lab . ' ('. $solventType .')', 'category' => 'lab butler', 'action' => 'collect']);
-            }
+
+        foreach ($solventTypes as $solventType) {
+            \App\Item::create(['type' => 'Labbutler ('. $solventType .')', 'category' => 'lab butler', 'action' => 'collect']);
         }
 
         \App\Item::create(['type' => 'SZA container', 'category' => 'general waste', 'action' => 'deliver']);

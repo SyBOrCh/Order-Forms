@@ -13,16 +13,25 @@
             <div class="col-md-6">
             <h3 class="mb-4 mt-4">{{ title_case($action) }}</h3>
             @foreach ($items as $item)
+                @if ($category === 'Lab Butler')
+                  @include('items.lab_butler')
+                @else
                 <div class="card mb-2 mx-auto text-left" style="width: 30rem;">
                   <div class="card-body">
                     <div class="input-group mb-3">
                       @if ($category == 'Liquid Nitrogen')
-                        <input type="number" class="form-control form-control-lg" aria-label="Recipient's username" aria-describedby="basic-addon2" value="1" name="quantity[{{ $item->id }}]
-                        " readonly>
-                        @else
-                        <input type="number" class="form-control form-control-lg" aria-label="Recipient's username" aria-describedby="basic-addon2" value="0" name="quantity[{{ $item->id }}]
+                        @include('items.liquid_nitrogen')
+                      @else
+                        <input 
+                            type="number" 
+                            class="form-control form-control-lg" 
+                            aria-label="Recipient's username" 
+                            aria-describedby="basic-addon2" 
+                            value="0" 
+                            name="quantity[{{ $item->id }}]
                         ">
                       @endif
+
                       <div class="input-group-append">
                         <span class="input-group-text" id="basic-addon2">{{ $item->type }}</span>
                       </div>
@@ -31,8 +40,10 @@
                     <div class="input-group mb-3">
                       @switch ($category)
                         @case('Lab Butler')
-                          <input type="text" class="form-control" name="notes[{{ $item->id }}]"
-                          placeholder="Zuurkasten/fume hoods: 7, 9, 12">
+                          //
+                        @break
+                        @case('Waste Containers')
+                          @include('items.waste_containers')
                         @break
                         @case('Gasses')
                           <div class="flex justify-around w-full">
@@ -56,6 +67,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
             </div>
         @endforeach

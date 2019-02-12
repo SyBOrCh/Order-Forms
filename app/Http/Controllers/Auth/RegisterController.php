@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'location'  => ['required'],
             'budgetnumber'  => ['required'],
             'phone' => ['required'],
+            'group' => ['required'],
         ]);
     }
 
@@ -73,6 +74,7 @@ class RegisterController extends Controller
             'location'  => $data['location'],
             'budgetnumber'  => $data['budgetnumber'],
             'phone'  => $data['phone'],
+            'group' => $data['group'],
         ]);
     }
 }
