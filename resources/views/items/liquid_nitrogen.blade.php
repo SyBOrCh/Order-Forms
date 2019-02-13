@@ -1,8 +1,8 @@
-@if (auth()->user()->group === 'syborch')
+@group('syborch')
     <input type="text" name="location[{{ $item->id }}]" value="4W19" readonly>
-@elseif(auth()->user()->group === 'medchem')
+@elsegroup('medchem')
     <input type="text" name="location[{{ $item->id }}]" value="4E26" readonly>
-@endif
+@endgroup
 
 <input 
   type="number" 

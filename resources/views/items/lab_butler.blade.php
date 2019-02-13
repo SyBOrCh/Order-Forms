@@ -1,46 +1,24 @@
+@php
+    $labs = ['syborch' => ['4W19', '4W35'], 'medchem' => ['4E33', '4E65']];
+@endphp
 
 @switch ($item->type)
     @case ('Labbutler (halogen rich, 1)')
-        
-        @if (auth()->user()->group === 'syborch')
-            @include('items.butler_lab', ['lab' => '4W19'])
-        @else
-            @include('items.butler_lab', ['lab' => '4E33'])
-        @endif
-
+        @include('items.butler_lab', ['lab' => $labs[auth()->user()->group][0]])
     @break
-    
-    @case ('Labbutler (halogen poor, 1)')
-        
-        @if (auth()->user()->group === 'syborch')
-            @include('items.butler_lab', ['lab' => '4W19'])
-        @else
-            @include('items.butler_lab', ['lab' => '4E33'])
-        @endif
 
+    @case ('Labbutler (halogen poor, 1)')
+        @include('items.butler_lab', ['lab' => $labs[auth()->user()->group][0]])
     @break
 
     @case ('Labbutler (halogen rich, 2)')
-        
-        @if (auth()->user()->group === 'syborch')
-            @include('items.butler_lab', ['lab' => '4W35'])
-        @else
-            @include('items.butler_lab', ['lab' => '4E65'])
-        @endif
-
+        @include('items.butler_lab', ['lab' => '4W35'])
     @break
 
     @case ('Labbutler (halogen poor, 2)')
-        
-        @if (auth()->user()->group === 'syborch')
-            @include('items.butler_lab', ['lab' => '4W35'])
-        @else
-            @include('items.butler_lab', ['lab' => '4E65'])
-        @endif
-
+        @include('items.butler_lab', ['lab' => '4W35'])
     @break
 
     @default
-        'default pass'
-    @break  
+    @break
 @endswitch
