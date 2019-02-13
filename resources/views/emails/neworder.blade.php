@@ -7,7 +7,7 @@
 
     <div class="container">
         <p>
-            Beste medewerker, 
+            Beste {{ $receiver }} medewerker, 
             <br><br> Graag zou ik onderstaande acties en/of artikelen aanvragen.
             <br><br> Bij voorbaat dank.
             <br><br> Met vriendelijke groet, 

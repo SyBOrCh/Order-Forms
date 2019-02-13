@@ -1,3 +1,9 @@
+<div class="w-full mb-3">
+  <input 
+    type="text" class="form-control" 
+    name="notes[{{ $item->id }}]"
+    placeholder="Add some notes (optional)">
+</div>
 <div class="flex justify-between w-full items-center">
   <div class="mr-4">
     <span class="text-lg">Location:</span>

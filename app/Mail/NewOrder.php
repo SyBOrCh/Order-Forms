@@ -17,15 +17,17 @@ class NewOrder extends Mailable
     public $items;
     public $translator;
     public $user;
+    public $receiver;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Order $order)
+    public function __construct(Order $order, $receiver = '')
     {
         $this->order = $order;
+        $this->receiver = $receiver;
         $this->user = auth()->user();
         $this->translator = new Translator();
         $this->items = $this->order->items->groupBy('action');
@@ -40,7 +42,6 @@ class NewOrder extends Mailable
     {
         return $this 
             ->from($this->user->email)
-            ->bcc($this->user->email)
             ->subject('Nieuwe aanvraag')
             ->view('emails.neworder');
     }

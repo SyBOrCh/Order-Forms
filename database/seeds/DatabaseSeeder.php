@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'budgetnumber'  => '200000',
             'phone' => '020-1234567',
             'location'  => '4W35',
+            'group' => 'syborch',
        ]); 
 
         $solventTypes = ['halogen rich', 'halogen poor'];
@@ -57,15 +58,18 @@ class DatabaseSeeder extends Seeder
             \App\Item::create(['type' => $gas, 'category' => 'gasses', 'action' => 'deliver']);
         }
 
-
-        foreach ($solventTypes as $solventType) {
-            \App\Item::create(['type' => 'Labbutler ('. $solventType .')', 'category' => 'lab butler', 'action' => 'collect']);
+        for ($i = 1; $i <= 2; $i ++) {
+            foreach ($solventTypes as $solventType) {
+                \App\Item::create(['type' => 'Labbutler ('. $solventType .', '. $i .')', 'category' => 'lab butler', 'action' => 'collect']);
+            }
         }
 
-        \App\Item::create(['type' => 'SZA container', 'category' => 'general waste', 'action' => 'deliver']);
-        // \App\Item::create(['type' => 'Glasbak', 'category' => 'general waste', 'action' => 'deliver']);
-        // \App\Item::create(['type' => 'Papierbak', 'category' => 'general waste', 'action' => 'deliver']);
-        // \App\Item::create(['type' => 'Plastic', 'category' => 'general waste', 'action' => 'deliver']);
-
+        foreach ($actions as $action) {
+            \App\Item::create(['type' => 'SZA container', 'category' => 'general waste', 'action' => $action]);
+            \App\Item::create(['type' => 'Glass bin', 'category' => 'general waste', 'action' => $action]);
+            \App\Item::create(['type' => 'Paper bin', 'category' => 'general waste', 'action' => $action]);
+            \App\Item::create(['type' => 'Plastic bin', 'category' => 'general waste', 'action' => $action]);
+            \App\Item::create(['type' => 'Waste bin', 'category' => 'general waste', 'action' => $action]);
+        }
     }
 }

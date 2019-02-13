@@ -58,10 +58,9 @@ class OrderController extends Controller
                 ]);
             }
 
-            Mail::to(config('mail.AMD'))
-                ->send(
-                    new NewOrder($amdOrder)
-                );
+            if($amdItems->count() > 0) {
+                Mail::bcc(auth()->user()->email)->to(config('mail.AMD'))->send(new NewOrder($amdOrder, 'AMD'));
+            }
 
             // FCO Order
             $fcoItems = $order->items()->where('category', 'general waste')->get();
@@ -73,10 +72,7 @@ class OrderController extends Controller
                 ]);
             }
 
-            Mail::to(config('mail.FCO'))
-                ->send(
-                    new NewOrder($fcoOrder)
-                );
+            Mail::bcc(auth()->user()->email)->to(config('mail.FCO'))->send(new NewOrder($fcoOrder, 'FCO'));
 
             $fcoOrder->delete();
             $amdOrder->delete();
