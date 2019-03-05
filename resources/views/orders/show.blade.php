@@ -14,7 +14,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">VUnet ID</span>
                       </div>
-                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="jbn478" name="vunetid" required>
+                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="" name="vunetid" required>
                     </div>    
                 </div>    
             </div>
@@ -25,7 +25,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Password</span>
                       </div>
-                      <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="vunetpassword" placeholder="***********" required>
+                      <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="vunetpassword" placeholder="" required>
                     </div>    
                 </div>    
             </div>
