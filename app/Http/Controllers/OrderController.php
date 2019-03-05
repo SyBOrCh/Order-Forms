@@ -59,7 +59,7 @@ class OrderController extends Controller
             }
 
             if($amdItems->count() > 0) {
-                Mail::bcc(auth()->user()->email)->to(config('mail.AMD'))->send(new NewOrder($amdOrder, 'AMD'));
+                Mail::to(config('mail.AMD'))->send(new NewOrder($amdOrder, 'AMD'));
             }
 
             // FCO Order
@@ -72,7 +72,7 @@ class OrderController extends Controller
                 ]);
             }
 
-            Mail::bcc(auth()->user()->email)->to(config('mail.FCO'))->send(new NewOrder($fcoOrder, 'FCO'));
+            Mail::to(config('mail.FCO'))->send(new NewOrder($fcoOrder, 'FCO'));
 
             $fcoOrder->delete();
             $amdOrder->delete();
