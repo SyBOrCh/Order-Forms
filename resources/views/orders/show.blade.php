@@ -4,40 +4,16 @@
     <div class="container text-center">
         @if ($order->isOpen())
         <h1 class="mb-2">Current order</h1>
-        
-        
+
+
         <form action="/orders/{{ $order->id }}/submit" method="POST">
             @csrf
-            <div class="flex container justify-center mb-2">
-                <div class="w-1/5">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-lg">VUnet ID</span>
-                      </div>
-                      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="" name="vunetid" required>
-                    </div>    
-                </div>    
-            </div>
-
-            <div class="flex container justify-center mb-3">
-                <div class="w-1/5">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-lg">Password</span>
-                      </div>
-                      <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" name="vunetpassword" placeholder="" required>
-                    </div>    
-                </div>    
-            </div>
-            
-            
-
             <button class="btn btn-primary">Submit form(s) &rarr;</button>
         </form>
         @else
         <h1 class="mb-2">Order from {{ $order->updated_at->format('d-m-Y h:m') }}</h1>
         @endif
-        
+
         <div class="row">
         @foreach ($items as $action => $items)
             <div class="col-md-12">
@@ -45,11 +21,11 @@
             @foreach ($items as $item)
                 <div class="card mb-2 mx-auto text-left" style="width: 30rem;">
                   <div class="card-body flex justify-between">
-                    
+
                     <div class="{{ $item->type == 'Liquid nitrogen tank' ? 'w-1/2' : 'w-1/3' }}">
                         <strong>{{ $item->pivot->quantity }}&times;</strong> {{ $item->type }}
                     </div>
-                    
+
                     @if ($order->isOpen())
 
                     @if ($item->type !== 'Liquid nitrogen tank')
@@ -76,13 +52,13 @@
                 </div>
                 @if ($item->pivot->notes)
                 <div class="w-full text-center p-1">
-                    <em>Notes:</em> <br> {{ $item->pivot->notes }}  
+                    <em>Notes:</em> <br> {{ $item->pivot->notes }}
                 </div>
                 @endif
 
                 @if ($item->pivot->location)
                 <div class="w-full text-center p-1">
-                    <em>Location:</em> <br> {{ $item->pivot->location }}  
+                    <em>Location:</em> <br> {{ $item->pivot->location }}
                 </div>
                 @endif
 
