@@ -40,8 +40,7 @@ class NewOrder extends Mailable
      */
     public function build()
     {
-        return $this 
-            ->from($this->user->email)
+        return $this
             ->bcc($this->user->email)
             ->subject('Nieuwe aanvraag')
             ->view('emails.neworder');
